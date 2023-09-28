@@ -14,19 +14,16 @@ import { CoreService } from './core/core.service';
 })
 export class AppComponent implements OnInit {
   displayedColumns: string[] = [
-    'id',
-    'firstName',
-    'lastName',
-    'email',
-    'dob',
-    'gender',
-    'education',
-    'company',
-    'experience',
-    'package',
+    'Name',
+    'Price',
+    'CompanyName',
+    'ManfactureDate',
     'action',
   ];
+  
   dataSource!: MatTableDataSource<any>;
+
+  itemArray :any;
 
   @ViewChild(MatPaginator) paginator!: MatPaginator;
   @ViewChild(MatSort) sort!: MatSort;
@@ -55,9 +52,14 @@ export class AppComponent implements OnInit {
   getEmployeeList() {
     this._empService.getEmployeeList().subscribe({
       next: (res) => {
-        this.dataSource = new MatTableDataSource(res);
+            
+            this.dataSource = new MatTableDataSource(res.newChocolate);
         this.dataSource.sort = this.sort;
         this.dataSource.paginator = this.paginator;
+        this.itemArray = res.chocolateData
+        this.dataSource = new MatTableDataSource(this.itemArray);
+        console.log(this.itemArray, "this.itemArray");
+        
       },
       error: console.log,
     });
@@ -73,9 +75,10 @@ export class AppComponent implements OnInit {
   }
 
   deleteEmployee(id: number) {
+    console.log(id)
     this._empService.deleteEmployee(id).subscribe({
       next: (res) => {
-        this._coreService.openSnackBar('Employee deleted!', 'done');
+        this._coreService.openSnackBar('Product  deleted!', 'done');
         this.getEmployeeList();
       },
       error: console.log,
