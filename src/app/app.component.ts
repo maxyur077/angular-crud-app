@@ -35,7 +35,7 @@ export class AppComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    this.getEmployeeList();
+    this.getSweetList();
   }
 
   openAddEditEmpForm() {
@@ -43,14 +43,14 @@ export class AppComponent implements OnInit {
     dialogRef.afterClosed().subscribe({
       next: (val) => {
         if (val) {
-          this.getEmployeeList();
+          this.getSweetList();
         }
       },
     });
   }
 
-  getEmployeeList() {
-    this._empService.getEmployeeList().subscribe({
+  getSweetList() {
+    this._empService.getSweetList().subscribe({
       next: (res) => {
             
             this.dataSource = new MatTableDataSource(res.newChocolate);
@@ -74,12 +74,12 @@ export class AppComponent implements OnInit {
     }
   }
 
-  deleteEmployee(id: number) {
+  deleteSweet(id: number) {
     console.log(id)
-    this._empService.deleteEmployee(id).subscribe({
+    this._empService.deleteSweet(id).subscribe({
       next: (res) => {
         this._coreService.openSnackBar('Product  deleted!', 'done');
-        this.getEmployeeList();
+        this.getSweetList();
       },
       error: console.log,
     });
@@ -93,7 +93,7 @@ export class AppComponent implements OnInit {
     dialogRef.afterClosed().subscribe({
       next: (val) => {
         if (val) {
-          this.getEmployeeList();
+          this.getSweetList();
         }
       },
     });

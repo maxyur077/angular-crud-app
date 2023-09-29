@@ -37,7 +37,7 @@ export class EmpAddEditComponent implements OnInit {
     if (this.empForm.valid) {
       if (this.data) {
         this._empService
-          .updateEmployee(this.data._id, this.empForm.value)
+          .updateSweet(this.data._id, this.empForm.value)
           .subscribe({
             next: (val: any) => {
               this._coreService.openSnackBar('Product detail updated!');
@@ -48,7 +48,7 @@ export class EmpAddEditComponent implements OnInit {
             },
           });
       } else {
-        this._empService.addEmployee(this.empForm.value).subscribe({
+        this._empService.addSweet(this.empForm.value).subscribe({
           next: (val: any) => {
             this._coreService.openSnackBar('Product added successfully');
             this._dialogRef.close(true);

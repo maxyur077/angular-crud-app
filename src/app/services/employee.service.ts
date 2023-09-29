@@ -8,19 +8,19 @@ import { Observable } from 'rxjs';
 export class EmployeeService {
   constructor(private _http: HttpClient) {}
 
-  addEmployee(data: any): Observable<any> {
+  addSweet(data: any): Observable<any> {
     return this._http.post('http://localhost:4210/chocolate', data);
   }
 
-  updateEmployee(id: number, data: any): Observable<any> {
+  updateSweet(id: number, data: any): Observable<any> {
     return this._http.put(`http://localhost:4210/chocolate/${id}`, data);
   }
 
-  getEmployeeList(): Observable<any> {
+  getSweetList(): Observable<any> {
     return this._http.get('http://localhost:4210/chocolate');
   }
 
-  deleteEmployee(id: number): Observable<any> {
+  deleteSweet(id: number): Observable<any> {
     return this._http.delete(`http://localhost:4210/chocolate/${id}`);
   }
 }
